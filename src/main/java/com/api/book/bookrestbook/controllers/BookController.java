@@ -42,7 +42,7 @@ public class BookController {
         if (book == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.of(Optional.of(book));
+        return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
 
     @PostMapping("/books")
