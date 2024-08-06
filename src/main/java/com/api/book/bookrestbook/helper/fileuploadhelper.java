@@ -1,4 +1,4 @@
-package com.api.book.bookrestbook.helper;
+package com.api.book.bootrestbook.helper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,36 +15,39 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class fileuploadhelper {
 
-    public final String UPLOAD_DIR = "C:\\Users\\awnis\\Documents\\workspace-spring-tool-suite-4-4.23.1.RELEASE\\bookrestbook\\src\\main\\resources\\static";
-    // public final String UPLOAD_DIR = new
-    // ClassPathResource("static/image").getFile().getAbsolutePath();
+    // public final String UPLOAD_DIR =
+    // "/Users/kamalnayangupta/Downloads/SpringBootProject/bootrestbook/src/main/resources/static/image";
+    public final String UPLOAD_DIR = new ClassPathResource("static/image/").getFile().getAbsolutePath();
 
-    // public fileuploadhelper() throws IOException {
+    public fileuploadhelper() throws IOException {
 
-    // }
+    }
 
-    public boolean uploadFile(MultipartFile multipartFile) {
+    public boolean uploadfile(MultipartFile multipartFile){
+
         boolean f = false;
 
         try {
-            // InputStream is = multipartFile.getInputStream();
-            // byte data[] = new byte[is.available()];
-            // is.read(data);
 
-            // FileOutputStream fos = new
-            // FileOutputStream(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename());
-            // fos.write(data);
-            // fos.flush();
-            // f=true;
-            Files.copy(multipartFile.getInputStream(),
-                    Paths.get(UPLOAD_DIR + File.separator + multipartFile.getOriginalFilename()),
-                    StandardCopyOption.REPLACE_EXISTING);
+            //
+        //    InputStream is =  multipartFile.getInputStream();
+ //        byte data[] = new byte[is.available()];
+        //    is.read(data);
 
-            f = true;
+           //write
+        //    FileOutputStream fos = new FileOutputStream(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename());
+        //    fos.write(data);
+
+        //    fos.flush();
+        //    fos.close();
+
+        Files.copy(multipartFile.getInputStream(), Paths.get(UPLOAD_DIR+File.separator+multipartFile.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+           f=true;
         } catch (Exception e) {
+            // TODO: handle exception
             e.printStackTrace();
         }
-        return f;
-    }
+        return f;
 
+    }
 }
